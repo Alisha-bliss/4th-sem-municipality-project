@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nepal Government Services Portal</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <img src="assets/images/logo.png" alt="Government Logo" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjYwIiBoZWlnaHQ9IjYwIiBmaWxsPSIjMWE0ZDhjIi8+CjxwYXRoIGQ9Ik0zMCAxNUMzNS41MjI4IDE1IDQwIDE5LjQ3NzIgNDAgMjVDNDAgMzAuNTIyOCAzNS41MjI4IDM1IDMwIDM1QzI0LjQ3NzIgMzUgMjAgMzAuNTIyOCAyMCAyNUMyMCAxOS40NzcyIDI0LjQ3NzIgMTUgMzAgMTVaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMzUgMjBIMjVWMzBIMzVWMjBaIiBmaWxsPSIjMWE0ZDhjIi8+Cjwvc3ZnPgo='">
+                    <div class="logo-text">
+                        <h1>Nepal Government Services</h1>
+                        <p>सबैको साझा, सबैको विकास</p>
+                    </div>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-login" id="loginBtn">Login</button>
+                    <button class="btn btn-register" id="registerBtn">Register</button>
+                </div>
+            </div>
+        </div>
+        <nav>
+            <div class="container">
+                <ul class="nav-menu">
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#news">News & Updates</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h2>Welcome to Nepal Government Services Portal</h2>
+            <p>Apply for various government services online from the comfort of your home. Fast, secure, and convenient.</p>
+            <button class="btn btn-hero" id="applyNowBtn">Apply Now</button>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>Choose from a variety of government services available online</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Marriage Registration</h3>
+                        <p>Register your marriage officially with the government of Nepal.</p>
+                        <button class="btn btn-service" data-service="marriage">Apply Now</button>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Citizenship Application</h3>
+                        <p>Apply for Nepali citizenship certificate through online process.</p>
+                        <button class="btn btn-service" data-service="citizenship">Apply Now</button>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-file-certificate"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Death Registration</h3>
+                        <p>Register death of a family member for official records.</p>
+                        <button class="btn btn-service" data-service="death">Apply Now</button>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Senior Citizenship</h3>
+                        <p>Apply for senior citizenship and avail special benefits.</p>
+                        <button class="btn btn-service" data-service="senior">Apply Now</button>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-passport"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Migration Registration</h3>
+                        <p>Register your migration to another location within Nepal.</p>
+                        <button class="btn btn-service" data-service="migration">Apply Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Form Section -->
+    <section class="application-form" id="applicationForm">
+        <div class="container">
+            <div class="form-container">
+                <h2 class="form-title">Application Form</h2>
+                <form id="serviceForm" action="backend/process-application.php" method="POST">
+                    <div class="form-group">
+                        <label for="serviceType">Service Type</label>
+                        <select class="form-control" id="serviceType" name="service_type" required>
+                            <option value="">Select a service</option>
+                            <option value="marriage">Marriage Registration</option>
+                            <option value="citizenship">Citizenship Application</option>
+                            <option value="death">Death Registration</option>
+                            <option value="senior">Senior Citizenship</option>
+                            <option value="migration">Migration Registration</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input type="text" class="form-control" id="firstName" name="first_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="middleName">Middle Name</label>
+                            <input type="text" class="form-control" id="middleName" name="middle_name">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" class="form-control" id="lastName" name="last_name" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" class="form-control" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="dob">Date of Birth</label>
+                            <input type="date" class="form-control" id="dob" name="dob" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="citizenshipNo">Citizenship Number</label>
+                            <input type="text" class="form-control" id="citizenshipNo" name="citizenship_no" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="purpose">Purpose of Application</label>
+                        <textarea class="form-control" id="purpose" name="purpose" rows="3" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-submit">Submit Application</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" id="closeLogin">&times;</span>
+                <h3>Login to Your Account</h3>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm" action="backend/user-login.php" method="POST">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" class="form-control" id="loginEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" class="form-control" id="loginPassword" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-submit">Login</button>
+                    <p style="text-align: center; margin-top: 15px;">
+                        Don't have an account? <a href="#" id="showRegister" style="color: var(--primary);">Register here</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" id="closeRegister">&times;</span>
+                <h3>Create Account</h3>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm" action="backend/user-register.php" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="regFirstName">First Name</label>
+                            <input type="text" class="form-control" id="regFirstName" name="first_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regLastName">Last Name</label>
+                            <input type="text" class="form-control" id="regLastName" name="last_name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="regEmail">Email Address</label>
+                        <input type="email" class="form-control" id="regEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regPhone">Phone Number</label>
+                        <input type="tel" class="form-control" id="regPhone" name="phone" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="regPassword">Password</label>
+                            <input type="password" class="form-control" id="regPassword" name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regConfirmPassword">Confirm Password</label>
+                            <input type="password" class="form-control" id="regConfirmPassword" name="confirm_password" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-submit">Register</button>
+                    <p style="text-align: center; margin-top: 15px;">
+                        Already have an account? <a href="#" id="showLogin" style="color: var(--primary);">Login here</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Singha Durbar, Kathmandu, Nepal</li>
+                        <li><i class="fas fa-phone"></i> +977-1-4211000</li>
+                        <li><i class="fas fa-envelope"></i> info@gov.np</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#news">News & Updates</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Important Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Office of the Prime Minister</a></li>
+                        <li><a href="#">Ministry of Home Affairs</a></li>
+                        <li><a href="#">Department of Immigration</a></li>
+                        <li><a href="#">National ID Card</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Government of Nepal. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/app.js"></script>
+    <script src="scripts/forms.js"></script>
+</body>
+</html>
