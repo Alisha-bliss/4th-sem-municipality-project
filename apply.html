@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply for Service - Nepal Government Services</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <a href="portal.html" style="text-decoration: none; color: white; display: flex; align-items: center;">
+                        <img src="logo.png" alt="Government Logo" onerror="this.src=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPKWcJiRv_WPNc4zR1hNR7JVL42tQIHycOhg&s">
+                        <div class="logo-text">
+                            <h1>Nepal Government Services</h1>
+                            <p>सबैको साझा, सबैको विकास</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-login" id="loginBtn">Login</button>
+                    <button class="btn btn-register" id="registerBtn">Register</button>
+                </div>
+            </div>
+        </div>
+        <nav>
+            <div class="container">
+                <ul class="nav-menu">
+                    <li><a href="portal.html">Home</a></li>
+                    <li><a href="portal.html#services">Services</a></li>
+                    <li><a href="apply.html" class="active">Apply Now</a></li>
+                    <li><a href="portal.html#news">News & Updates</a></li>
+                    <li><a href="portal.html#contact">Contact</a></li>
+                    <li><a href="portal.html#faq">FAQ</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Application Form Section -->
+    <section class="application-form">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2 class="form-title">Government Service Application</h2>
+                    <p class="form-subtitle">Fill out the form below to apply for government services</p>
+                    <a href="portal.html#services" class="btn-back">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Services
+                    </a>
+                </div>
+                
+                <form id="serviceForm">
+                    <!-- Personal Information Section -->
+                    <div class="form-section">
+                        <h3 class="section-heading">
+                            <i class="fas fa-user"></i>
+                            Personal Information
+                        </h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName" class="required">First Name</label>
+                                <input type="text" class="form-control" id="firstName" name="first_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="middleName" class="">Middle Name</label>
+                                <input type="text" class="form-control" id="middleName" name="middle_name">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName" class="required">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" name="last_name" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email" class="required">Email Address</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone" class="required">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone" name="phone" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address" class="required">Current Address</label>
+                            <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="dob" class="required">Date of Birth</label>
+                                <input type="date" class="form-control" id="dob" name="dob" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="citizenshipNo" class="required">Citizenship Number</label>
+                                <input type="text" class="form-control" id="citizenshipNo" name="citizenship_no" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service Selection Section -->
+                    <div class="form-section">
+                        <h3 class="section-heading">
+                            <i class="fas fa-tasks"></i>
+                            Service Selection
+                        </h3>
+                        <div class="form-group">
+                            <label for="serviceType" class="required">Select Service Type</label>
+                            <select class="form-control" id="serviceType" name="service_type" required>
+                                <option value="">-- Please select a service --</option>
+                                <option value="marriage">Marriage Registration</option>
+                                <option value="citizenship">Citizenship Application</option>
+                                <option value="death">Death Registration</option>
+                                <option value="senior">Senior Citizenship</option>
+                                <option value="migration">Migration Registration</option>
+                            </select>
+                        </div>
+                        
+                        <div id="serviceDescription" class="service-info">
+                            <div class="service-info-icon">
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="service-info-content">
+                                <h4>Service Information</h4>
+                                <p>Please select a service to see specific requirements and additional information.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Service-Specific Fields -->
+                    <div id="extraFields" class="extra-fields">
+                        <div class="extra-fields-placeholder">
+                            <i class="fas fa-arrow-down"></i>
+                            <p>Additional service-specific fields will appear here after selecting a service</p>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="reset" class="btn btn-reset">
+                            <i class="fas fa-redo"></i>
+                            Reset Form
+                        </button>
+                        <button type="submit" class="btn btn-submit">
+                            <i class="fas fa-paper-plane"></i>
+                            Submit Application
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" id="closeLogin">&times;</span>
+                <h3>Login to Your Account</h3>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" class="form-control" id="loginEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" class="form-control" id="loginPassword" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-submit">Login</button>
+                    <p style="text-align: center; margin-top: 15px;">
+                        Don't have an account? <a href="#" id="showRegister" style="color: var(--primary);">Register here</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" id="closeRegister">&times;</span>
+                <h3>Create Account</h3>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="regFirstName">First Name</label>
+                            <input type="text" class="form-control" id="regFirstName" name="first_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regLastName">Last Name</label>
+                            <input type="text" class="form-control" id="regLastName" name="last_name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="regEmail">Email Address</label>
+                        <input type="email" class="form-control" id="regEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regPhone">Phone Number</label>
+                        <input type="tel" class="form-control" id="regPhone" name="phone" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="regPassword">Password</label>
+                            <input type="password" class="form-control" id="regPassword" name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regConfirmPassword">Confirm Password</label>
+                            <input type="password" class="form-control" id="regConfirmPassword" name="confirm_password" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-submit">Register</button>
+                    <p style="text-align: center; margin-top: 15px;">
+                        Already have an account? <a href="#" id="showLogin" style="color: var(--primary);">Login here</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Singha Durbar, Kathmandu, Nepal</li>
+                        <li><i class="fas fa-phone"></i> +977-1-4211000</li>
+                        <li><i class="fas fa-envelope"></i> info@gov.np</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="portal.html">Home</a></li>
+                        <li><a href="portal.html#services">Services</a></li>
+                        <li><a href="apply.html">Apply Now</a></li>
+                        <li><a href="portal.html#news">News & Updates</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Important Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Office of the Prime Minister</a></li>
+                        <li><a href="#">Ministry of Home Affairs</a></li>
+                        <li><a href="#">Department of Immigration</a></li>
+                        <li><a href="#">National ID Card</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Government of Nepal. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/app.js"></script>
+    <script src="scripts/forms.js"></script>
+</body>
+</html>

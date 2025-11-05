@@ -13,7 +13,7 @@
         <div class="container">
             <div class="header-top">
                 <div class="logo">
-                    <img src="logo.png" alt="Government Logo" onerror="this.src=https://ward10.lmc.gov.np/wp-content/uploads/elementor/thumbs/gon-logo-1-1-q1snewdmg4gfzuriq0d6285yksonqy61tas42cru20.png">
+                    <img src="logo.png" alt="Government Logo" onerror="this.src=https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPKWcJiRv_WPNc4zR1hNR7JVL42tQIHycOhg&s">
                     <div class="logo-text">
                         <h1>Nepal Government Services</h1>
                         <p>सबैको साझा, सबैको विकास</p>
@@ -30,7 +30,7 @@
                 <ul class="nav-menu">
                     <li><a href="#" class="active">Home</a></li>
                     <li><a href="#services">Services</a></li>
-                    <li><a href="#applicationForm">Apply Now</a></li>
+                    <li><a href="apply.html">Apply Now</a></li>
                     <li><a href="#news">News & Updates</a></li>
                     <li><a href="#contact">Contact</a></li>
                     <li><a href="#faq">FAQ</a></li>
@@ -44,7 +44,7 @@
         <div class="container">
             <h2>Welcome to Nepal Government Services Portal</h2>
             <p>Apply for various government services online from the comfort of your home. Fast, secure, and convenient.</p>
-            <button class="btn btn-hero" id="applyNowBtn">Apply Now</button>
+            <a href="apply.html" class="btn btn-hero">Apply Now</a>
         </div>
     </section>
 
@@ -63,7 +63,7 @@
                     <div class="service-content">
                         <h3>Marriage Registration</h3>
                         <p>Register your marriage officially with the government of Nepal.</p>
-                        <button class="btn btn-service" data-service="marriage">Apply Now</button>
+                        <button class="btn btn-service" onclick="applyForService('marriage')">Apply Now</button>
                     </div>
                 </div>
                 <div class="service-card">
@@ -73,7 +73,7 @@
                     <div class="service-content">
                         <h3>Citizenship Application</h3>
                         <p>Apply for Nepali citizenship certificate through online process.</p>
-                        <button class="btn btn-service" data-service="citizenship">Apply Now</button>
+                        <button class="btn btn-service" onclick="applyForService('citizenship')">Apply Now</button>
                     </div>
                 </div>
                 <div class="service-card">
@@ -83,7 +83,7 @@
                     <div class="service-content">
                         <h3>Death Registration</h3>
                         <p>Register death of a family member for official records.</p>
-                        <button class="btn btn-service" data-service="death">Apply Now</button>
+                        <button class="btn btn-service" onclick="applyForService('death')">Apply Now</button>
                     </div>
                 </div>
                 <div class="service-card">
@@ -93,7 +93,7 @@
                     <div class="service-content">
                         <h3>Senior Citizenship</h3>
                         <p>Apply for senior citizenship and avail special benefits.</p>
-                        <button class="btn btn-service" data-service="senior">Apply Now</button>
+                        <button class="btn btn-service" onclick="applyForService('senior')">Apply Now</button>
                     </div>
                 </div>
                 <div class="service-card">
@@ -103,117 +103,49 @@
                     <div class="service-content">
                         <h3>Migration Registration</h3>
                         <p>Register your migration to another location within Nepal.</p>
-                        <button class="btn btn-service" data-service="migration">Apply Now</button>
+                        <button class="btn btn-service" onclick="applyForService('migration')">Apply Now</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-
-    <!-- Form Section -->
-    <section class="application-form" id="applicationForm">
+    <!-- Footer -->
+    <footer id="contact">
         <div class="container">
-            <div class="form-container">
-                <h2 class="form-title">Government Service Application</h2>
-                <p class="form-subtitle">Fill out the form below to apply for government services</p>
-                
-                <form id="serviceForm" action="backend/process-application.php" method="POST">
-                    <!-- Personal Information Section -->
-                    <div class="form-section">
-                        <h3 class="section-heading">
-                            <i class="fas fa-user"></i>
-                            Personal Information
-                        </h3>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="firstName" class="required">First Name</label>
-                                <input type="text" class="form-control" id="firstName" name="first_name" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="Middlename" class="Middle name">Middle Name</label>
-                                <input type="text" class="form-control" id="middleName" name="middle_name">
-                            </div>
-                            <div class="form-group">
-                                <label for="lastName" class="required">Last Name</label>
-                                <input type="text" class="form-control" id="lastName" name="last_name" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="email" class="required">Email Address</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone" class="required">Phone Number</label>
-                                <input type="tel" class="form-control" id="phone" name="phone" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="address" class="required">Current Address</label>
-                            <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="dob" class="required">Date of Birth</label>
-                                <input type="date" class="form-control" id="dob" name="dob" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="citizenshipNo" class="required">Citizenship Number</label>
-                                <input type="text" class="form-control" id="citizenshipNo" name="citizenship_no" required>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Service Selection Section -->
-                    <div class="form-section">
-                        <h3 class="section-heading">
-                            <i class="fas fa-tasks"></i>
-                            Service Selection
-                        </h3>
-                        <div class="form-group">
-                            <label for="serviceType" class="required">Select Service Type</label>
-                            <select class="form-control" id="serviceType" name="service_type" required>
-                                <option value="">-- Please select a service --</option>
-                                <option value="marriage">Marriage Registration</option>
-                                <option value="citizenship">Citizenship Application</option>
-                                <option value="death">Death Registration</option>
-                                <option value="senior">Senior Citizenship</option>
-                                <option value="migration">Migration Registration</option>
-                            </select>
-                        </div>
-                        
-                        <div id="serviceDescription" class="service-info">
-                            <div class="service-info-icon">
-                                <i class="fas fa-info-circle"></i>
-                            </div>
-                            <div class="service-info-content">
-                                <h4>Service Information</h4>
-                                <p>Please select a service to see specific requirements and additional information.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Dynamic Service-Specific Fields -->
-                    <div id="extraFields" class="extra-fields">
-                        <div class="extra-fields-placeholder">
-                            <i class="fas fa-arrow-down"></i>
-                            <p>Additional service-specific fields will appear here after selecting a service</p>
-                        </div>
-                    </div>
-
-                    <button type="submit" class="btn btn-submit">
-                        <i class="fas fa-paper-plane"></i>
-                        Submit Application
-                    </button>
-                </form>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Singha Durbar, Kathmandu, Nepal</li>
+                        <li><i class="fas fa-phone"></i> +977-1-4211000</li>
+                        <li><i class="fas fa-envelope"></i> info@gov.np</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="apply.html">Apply Now</a></li>
+                        <li><a href="#news">News & Updates</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Important Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Office of the Prime Minister</a></li>
+                        <li><a href="#">Ministry of Home Affairs</a></li>
+                        <li><a href="#">Department of Immigration</a></li>
+                        <li><a href="#">National ID Card</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Government of Nepal. All Rights Reserved.</p>
             </div>
         </div>
-    </section>
+    </footer>
 
     <!-- Login Modal -->
     <div class="modal" id="loginModal">
@@ -223,7 +155,7 @@
                 <h3>Login to Your Account</h3>
             </div>
             <div class="modal-body">
-                <form id="loginForm" action="backend/user-login.php" method="POST">
+                <form id="loginForm">
                     <div class="form-group">
                         <label for="loginEmail">Email Address</label>
                         <input type="email" class="form-control" id="loginEmail" name="email" required>
@@ -249,7 +181,7 @@
                 <h3>Create Account</h3>
             </div>
             <div class="modal-body">
-                <form id="registerForm" action="backend/user-register.php" method="POST">
+                <form id="registerForm">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="regFirstName">First Name</label>
@@ -287,44 +219,14 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt"></i> Sanepa, Lalitpur, Nepal</li>
-                        <li><i class="fas fa-phone"></i> +977-1-4211000</li>
-                        <li><i class="fas fa-envelope"></i> info@gov.np</li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#applicationForm">Apply Now</a></li>
-                        <li><a href="#news">News & Updates</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Important Links</h3>
-                    <ul class="footer-links">
-                        <li><a href="#">Office of the Prime Minister</a></li>
-                        <li><a href="#">Ministry of Home Affairs</a></li>
-                        <li><a href="#">Department of Immigration</a></li>
-                        <li><a href="#">National ID Card</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2025 Government of Nepal. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
-
     <script src="scripts/app.js"></script>
-    <script src="scripts/forms.js"></script>
+    <script>
+        function applyForService(serviceType) {
+            // Store the selected service in localStorage
+            localStorage.setItem('selectedService', serviceType);
+            // Redirect to apply page
+            window.location.href = 'apply.html';
+        }
+    </script>
 </body>
 </html>
