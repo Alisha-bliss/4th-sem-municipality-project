@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News & Updates - Nepal Government Services</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">
+                    <a href="portal.html" style="text-decoration: none; color: white; display: flex; align-items: center;">
+                        <img src="logo.png" alt="Government Logo" onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPKWcJiRv_WPNc4zR1hNR7JVL42tQIHycOhg&s'">
+                        <div class="logo-text">
+                            <h1>Nepal Government Services</h1>
+                            <p>सबैको साझा, सबैको विकास</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="header-actions">
+                    <button class="btn btn-login" id="loginBtn">Login</button>
+                    <button class="btn btn-register" id="registerBtn">Register</button>
+                </div>
+            </div>
+        </div>
+        <nav>
+            <div class="container">
+                <ul class="nav-menu">
+                    <li><a href="portal.html">Home</a></li>
+                    <li><a href="portal.html#services">Services</a></li>
+                    <li><a href="apply.html">Apply Now</a></li>
+                    <li><a href="news.html" class="active">News & Updates</a></li>
+                    <li><a href="portal.html#contact">Contact</a></li>
+                    <li><a href="portal.html#faq">FAQ</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- News & Updates Section -->
+    <section class="news-updates">
+        <div class="container">
+            <div class="section-title">
+                <h2>Municipality News & Updates</h2>
+                <p>Latest announcements and important information from your local municipality</p>
+            </div>
+
+            <!-- Search and Filters -->
+            <div class="news-search-container">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="newsSearch" placeholder="Search news...">
+                    <button id="clearSearch" style="display: none;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="category-filters">
+                <h4 style="margin-bottom: 15px; color: var(--primary);">Filter by Category:</h4>
+                <div class="filter-buttons">
+                    <button class="category-filter-btn active" data-category="all">All News</button>
+                    <button class="category-filter-btn" data-category="announcement">Announcements</button>
+                    <button class="category-filter-btn" data-category="development">Development</button>
+                    <button class="category-filter-btn" data-category="health">Health</button>
+                    <button class="category-filter-btn" data-category="education">Education</button>
+                    <button class="category-filter-btn" data-category="tender">Tenders</button>
+                    <button class="category-filter-btn" data-category="event">Events</button>
+                    <button class="category-filter-btn" data-category="holiday">Holidays</button>
+                </div>
+            </div>
+
+            <!-- News Layout -->
+            <div class="news-layout">
+                <!-- Main News Section -->
+                <div class="main-news-section">
+                    <!-- Featured News -->
+                    <div class="featured-news">
+                        <h3 class="section-subtitle">Featured News</h3>
+                        <div class="featured-news-grid" id="featuredNews">
+                            <!-- Featured news will be loaded here -->
+                        </div>
+                    </div>
+
+                    <!-- All News -->
+                    <div class="all-news">
+                        <h3 class="section-subtitle">Latest News</h3>
+                        <div class="news-list" id="newsList">
+                            <!-- News items will be loaded here -->
+                        </div>
+                        
+                        <!-- Load More Button -->
+                        <div class="load-more-container">
+                            <button class="btn btn-load-more" id="loadMoreBtn">
+                                <i class="fas fa-plus"></i>
+                                Load More News
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="news-sidebar">
+                    <!-- Quick Links -->
+                    <div class="sidebar-widget">
+                        <h4 class="widget-title">
+                            <i class="fas fa-link"></i>
+                            Quick Links
+                        </h4>
+                        <ul class="quick-links">
+                            <li><a href="apply.html"><i class="fas fa-arrow-right"></i> Apply for Services</a></li>
+                            <li><a href="portal.html#services"><i class="fas fa-arrow-right"></i> Available Services</a></li>
+                            <li><a href="#"><i class="fas fa-arrow-right"></i> Download Forms</a></li>
+                            <li><a href="#"><i class="fas fa-arrow-right"></i> Contact Officials</a></li>
+                            <li><a href="#"><i class="fas fa-arrow-right"></i> Feedback</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Important Notices -->
+                    <div class="sidebar-widget">
+                        <h4 class="widget-title">
+                            <i class="fas fa-exclamation-circle"></i>
+                            Important Notices
+                        </h4>
+                        <div class="notice-board">
+                            <div class="notice-item urgent">
+                                <div class="notice-icon">
+                                    <i class="fas fa-bell"></i>
+                                </div>
+                                <div class="notice-content">
+                                    <h5>Office Closure Notice</h5>
+                                    <p>Municipality office will remain closed on public holidays.</p>
+                                    <span class="notice-date">2 days ago</span>
+                                </div>
+                            </div>
+                            <div class="notice-item">
+                                <div class="notice-icon">
+                                    <i class="fas fa-info-circle"></i>
+                                </div>
+                                <div class="notice-content">
+                                    <h5>Tax Payment Extension</h5>
+                                    <p>Last date for property tax payment extended until December 15.</p>
+                                    <span class="notice-date">1 week ago</span>
+                                </div>
+                            </div>
+                            <div class="notice-item">
+                                <div class="notice-icon">
+                                    <i class="fas fa-calendar"></i>
+                                </div>
+                                <div class="notice-content">
+                                    <h5>Public Hearing</h5>
+                                    <p>Budget discussion public hearing on November 20.</p>
+                                    <span class="notice-date">2 weeks ago</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Statistics -->
+                    <div class="sidebar-widget">
+                        <h4 class="widget-title">
+                            <i class="fas fa-chart-bar"></i>
+                            Statistics
+                        </h4>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-number">1,245</div>
+                                <div class="stat-label">Applications Today</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">89%</div>
+                                <div class="stat-label">Success Rate</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">24h</div>
+                                <div class="stat-label">Avg. Processing</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Emergency Contacts -->
+                    <div class="sidebar-widget">
+                        <h4 class="widget-title">
+                            <i class="fas fa-phone-alt"></i>
+                            Emergency Contacts
+                        </h4>
+                        <div class="emergency-contacts">
+                            <div class="contact-item">
+                                <i class="fas fa-ambulance"></i>
+                                <div>
+                                    <strong>Ambulance</strong>
+                                    <span>102</span>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-fire"></i>
+                                <div>
+                                    <strong>Fire Department</strong>
+                                    <span>101</span>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <div>
+                                    <strong>Police</strong>
+                                    <span>100</span>
+                                </div>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-tint"></i>
+                                <div>
+                                    <strong>Water Supply</strong>
+                                    <span>01-4211002</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Detail Modal -->
+    <div class="modal" id="newsModal">
+        <div class="modal-content news-modal">
+            <div class="modal-header">
+                <span class="close" id="closeNewsModal">&times;</span>
+                <h3 id="newsModalTitle">News Title</h3>
+                <div class="news-meta" id="newsModalMeta">
+                    <span class="news-date"><i class="far fa-calendar"></i> Date</span>
+                    <span class="news-category"><i class="far fa-folder"></i> Category</span>
+                    <span class="news-views"><i class="far fa-eye"></i> Views</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="news-content" id="newsModalContent">
+                    <!-- News content will be loaded here -->
+                </div>
+                <div class="news-attachments" id="newsModalAttachments">
+                    <!-- Attachments will be loaded here -->
+                </div>
+                <!-- Share Section -->
+                <div class="news-share" style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #eee;">
+                    <h4>Share this news:</h4>
+                    <div class="share-buttons">
+                        <button class="share-btn facebook" onclick="shareOnFacebook()">
+                            <i class="fab fa-facebook-f"></i>
+                        </button>
+                        <button class="share-btn twitter" onclick="shareOnTwitter()">
+                            <i class="fab fa-twitter"></i>
+                        </button>
+                        <button class="share-btn linkedin" onclick="shareOnLinkedIn()">
+                            <i class="fab fa-linkedin-in"></i>
+                        </button>
+                        <button class="share-btn copy-link" onclick="copyNewsLink()">
+                            <i class="fas fa-link"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Sanepa, Lalitpur, Nepal</li>
+                        <li><i class="fas fa-phone"></i> +977-1-5211000</li>
+                        <li><i class="fas fa-envelope"></i> info@gov.np</li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="portal.html">Home</a></li>
+                        <li><a href="portal.html#services">Services</a></li>
+                        <li><a href="apply.html">Apply Now</a></li>
+                        <li><a href="news.html">News & Updates</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Important Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Office of the Prime Minister</a></li>
+                        <li><a href="#">Ministry of Home Affairs</a></li>
+                        <li><a href="#">Department of Immigration</a></li>
+                        <li><a href="#">National ID Card</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 Government of Nepal. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" id="closeLogin">&times;</span>
+                <h3>Login to Your Account</h3>
+            </div>
+            <div class="modal-body">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email Address</label>
+                        <input type="email" class="form-control" id="loginEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" class="form-control" id="loginPassword" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-submit">Login</button>
+                    <p style="text-align: center; margin-top: 15px;">
+                        Don't have an account? <a href="#" id="showRegister" style="color: var(--primary);">Register here</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" id="closeRegister">&times;</span>
+                <h3>Create Account</h3>
+            </div>
+            <div class="modal-body">
+                <form id="registerForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="regFirstName">First Name</label>
+                            <input type="text" class="form-control" id="regFirstName" name="first_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regLastName">Last Name</label>
+                            <input type="text" class="form-control" id="regLastName" name="last_name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="regEmail">Email Address</label>
+                        <input type="email" class="form-control" id="regEmail" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="regPhone">Phone Number</label>
+                        <input type="tel" class="form-control" id="regPhone" name="phone" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="regPassword">Password</label>
+                            <input type="password" class="form-control" id="regPassword" name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="regConfirmPassword">Confirm Password</label>
+                            <input type="password" class="form-control" id="regConfirmPassword" name="confirm_password" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-submit">Register</button>
+                    <p style="text-align: center; margin-top: 15px;">
+                        Already have an account? <a href="#" id="showLogin" style="color: var(--primary);">Login here</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="scripts/app.js"></script>
+    <script src="scripts/news.js"></script>
+</body>
+</html>
