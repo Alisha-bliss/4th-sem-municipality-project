@@ -21,7 +21,8 @@
                         </div>
                     </a>
                 </div>
-                <div class="header-actions">
+                <div class="header-actions" id="headerActions">
+                    <!-- Will be populated by JavaScript -->
                     <button class="btn btn-login" id="loginBtn">Login</button>
                     <button class="btn btn-register" id="registerBtn">Register</button>
                 </div>
@@ -33,7 +34,7 @@
                     <li><a href="portal.html">Home</a></li>
                     <li><a href="portal.html#services">Services</a></li>
                     <li><a href="apply.html" class="active">Apply Now</a></li>
-                    <li><a href="portal.html#news">News & Updates</a></li>
+                    <li><a href="news.html">News & Updates</a></li>
                     <li><a href="portal.html#contact">Contact</a></li>
                     <li><a href="portal.html#faq">FAQ</a></li>
                 </ul>
@@ -246,7 +247,7 @@
                         <li><a href="portal.html">Home</a></li>
                         <li><a href="portal.html#services">Services</a></li>
                         <li><a href="apply.html">Apply Now</a></li>
-                        <li><a href="portal.html#news">News & Updates</a></li>
+                        <li><a href="news.html">News & Updates</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -265,7 +266,27 @@
         </div>
     </footer>
 
+    <!-- JavaScript Files -->
+    <script src="scripts/auth.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/forms.js"></script>
+    <script>
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            updateAuthUI();
+            
+            // Auto-select service from localStorage
+            const selectedService = localStorage.getItem('selectedService');
+            if (selectedService) {
+                const serviceSelect = document.getElementById('serviceType');
+                if (serviceSelect) {
+                    serviceSelect.value = selectedService;
+                    const event = new Event('change');
+                    serviceSelect.dispatchEvent(event);
+                }
+                localStorage.removeItem('selectedService');
+            }
+        });
+    </script>
 </body>
 </html>

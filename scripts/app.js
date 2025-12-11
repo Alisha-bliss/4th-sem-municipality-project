@@ -1,108 +1,10 @@
 // Main application functionality
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('App initialized'); // Debug log
+    console.log('App initialized');
     
-    // DOM Elements
-    const loginBtn = document.getElementById('loginBtn');
-    const registerBtn = document.getElementById('registerBtn');
-    const loginModal = document.getElementById('loginModal');
-    const registerModal = document.getElementById('registerModal');
-    const closeLogin = document.getElementById('closeLogin');
-    const closeRegister = document.getElementById('closeRegister');
-    const showRegister = document.getElementById('showRegister');
-    const showLogin = document.getElementById('showLogin');
-
-    // Debug: Check if elements exist
-    console.log('Login button:', loginBtn);
-    console.log('Register button:', registerBtn);
-
-    // Show login modal
-    if (loginBtn) {
-        loginBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            console.log('Login button clicked');
-            if (loginModal) {
-                loginModal.style.display = 'flex';
-                document.body.style.overflow = 'hidden'; // Prevent background scrolling
-            }
-        });
-    } else {
-        console.error('Login button not found');
-    }
-
-    // Show register modal
-    if (registerBtn) {
-        registerBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            console.log('Register button clicked');
-            if (registerModal) {
-                registerModal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            }
-        });
-    } else {
-        console.error('Register button not found');
-    }
-
-    // Switch to register form
-    if (showRegister) {
-        showRegister.addEventListener('click', function(e) {
-            e.preventDefault();
-            console.log('Show register clicked');
-            if (loginModal && registerModal) {
-                loginModal.style.display = 'none';
-                registerModal.style.display = 'flex';
-            }
-        });
-    }
-
-    // Switch to login form
-    if (showLogin) {
-        showLogin.addEventListener('click', function(e) {
-            e.preventDefault();
-            console.log('Show login clicked');
-            if (registerModal && loginModal) {
-                registerModal.style.display = 'none';
-                loginModal.style.display = 'flex';
-            }
-        });
-    }
-
-    // Close modals
-    if (closeLogin) {
-        closeLogin.addEventListener('click', function() {
-            console.log('Close login clicked');
-            if (loginModal) {
-                loginModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        });
-    }
-
-    if (closeRegister) {
-        closeRegister.addEventListener('click', function() {
-            console.log('Close register clicked');
-            if (registerModal) {
-                registerModal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        });
-    }
-
-    // Close modal when clicking outside
-    window.addEventListener('click', function(e) {
-        if (e.target === loginModal) {
-            console.log('Clicked outside login modal');
-            loginModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-        if (e.target === registerModal) {
-            console.log('Clicked outside register modal');
-            registerModal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-    });
-
+    // Attach modal listeners
+    attachModalListeners();
+    
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -138,6 +40,80 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-
-    console.log('All event listeners attached');
 });
+
+// Function to attach modal listeners
+function attachModalListeners() {
+    const loginBtn = document.getElementById('loginBtn');
+    const registerBtn = document.getElementById('registerBtn');
+    const loginModal = document.getElementById('loginModal');
+    const registerModal = document.getElementById('registerModal');
+    const closeLogin = document.getElementById('closeLogin');
+    const closeRegister = document.getElementById('closeRegister');
+    const showRegister = document.getElementById('showRegister');
+    const showLogin = document.getElementById('showLogin');
+
+    if (loginBtn && loginModal) {
+        loginBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    if (registerBtn && registerModal) {
+        registerBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            registerModal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+    }
+
+    // Close modals
+    if (closeLogin && loginModal) {
+        closeLogin.addEventListener('click', function() {
+            loginModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+    }
+
+    if (closeRegister && registerModal) {
+        closeRegister.addEventListener('click', function() {
+            registerModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+    }
+
+    // Switch between modals
+    if (showRegister) {
+        showRegister.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (loginModal && registerModal) {
+                loginModal.style.display = 'none';
+                registerModal.style.display = 'flex';
+            }
+        });
+    }
+
+    if (showLogin) {
+        showLogin.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (registerModal && loginModal) {
+                registerModal.style.display = 'none';
+                loginModal.style.display = 'flex';
+            }
+        });
+    }
+
+    // Close modal when clicking outside
+    window.addEventListener('click', function(e) {
+        if (e.target === loginModal) {
+            loginModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        if (e.target === registerModal) {
+            registerModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+}

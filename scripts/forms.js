@@ -1,22 +1,6 @@
 // Form submission handlers and dynamic form logic
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Forms initialized'); // Debug log
-    
-    // Auto-select service from localStorage
-    if (window.location.pathname.includes('apply.html')) {
-        const selectedService = localStorage.getItem('selectedService');
-        if (selectedService) {
-            const serviceSelect = document.getElementById('serviceType');
-            if (serviceSelect) {
-                serviceSelect.value = selectedService;
-                // Trigger change event to load dynamic fields
-                const event = new Event('change');
-                serviceSelect.dispatchEvent(event);
-            }
-            // Clear localStorage
-            localStorage.removeItem('selectedService');
-        }
-    }
+    console.log('Forms initialized');
     
     // Initialize dynamic form functionality
     initializeDynamicForm();
@@ -25,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const serviceForm = document.getElementById('serviceForm');
     if (serviceForm) {
         console.log('Service form found');
-        serviceForm.addEventListener('submit', function(e) {
+        serviceForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             console.log('Service form submitted');
             
@@ -43,8 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
                 submitBtn.disabled = true;
 
-                // Simulate form submission
-                setTimeout(() => {
+                try {
                     // Get form data
                     const formData = new FormData(this);
                     const data = {};
@@ -54,41 +37,58 @@ document.addEventListener('DOMContentLoaded', function() {
                     
                     console.log('Form data:', data);
                     
-                    // Show success message
-                    const serviceName = serviceType.options[serviceType.selectedIndex].text;
-                    showMessage(`Thank you! Your ${serviceName} application has been submitted successfully. You will receive an email confirmation shortly.`, 'success');
+                    // Submit to PHP API
+                    const response = await fetch('php/api/submit_application.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data)
+                    });
                     
-                    // Reset form
-                    this.reset();
+                    const result = await response.json();
                     
-                    // Reset dynamic fields
-                    const extraFields = document.getElementById('extraFields');
-                    const serviceDescription = document.getElementById('serviceDescription');
-                    if (extraFields) {
-                        extraFields.innerHTML = `
-                            <div class="extra-fields-placeholder">
-                                <i class="fas fa-arrow-down"></i>
-                                <p>Additional service-specific fields will appear here after selecting a service</p>
-                            </div>
-                        `;
+                    if (result.success) {
+                        const serviceName = serviceType.options[serviceType.selectedIndex].text;
+                        const message = `Thank you! Your ${serviceName} application has been submitted successfully. 
+                                       Application Number: <strong>${result.application_number}</strong>`;
+                        showMessage(message, 'success');
+                        
+                        // Reset form
+                        this.reset();
+                        
+                        // Reset dynamic fields
+                        const extraFields = document.getElementById('extraFields');
+                        const serviceDescription = document.getElementById('serviceDescription');
+                        if (extraFields) {
+                            extraFields.innerHTML = `
+                                <div class="extra-fields-placeholder">
+                                    <i class="fas fa-arrow-down"></i>
+                                    <p>Additional service-specific fields will appear here after selecting a service</p>
+                                </div>
+                            `;
+                        }
+                        if (serviceDescription) {
+                            serviceDescription.innerHTML = `
+                                <div class="service-info-icon">
+                                    <i class="fas fa-info-circle"></i>
+                                </div>
+                                <div class="service-info-content">
+                                    <h4>Service Information</h4>
+                                    <p>Please select a service to see specific requirements and additional information.</p>
+                                </div>
+                            `;
+                        }
+                    } else {
+                        showMessage(result.message || 'Failed to submit application. Please try again.', 'error');
                     }
-                    if (serviceDescription) {
-                        serviceDescription.innerHTML = `
-                            <div class="service-info-icon">
-                                <i class="fas fa-info-circle"></i>
-                            </div>
-                            <div class="service-info-content">
-                                <h4>Service Information</h4>
-                                <p>Please select a service to see specific requirements and additional information.</p>
-                            </div>
-                        `;
-                    }
-                    
-                    // Reset button
+                } catch (error) {
+                    console.error('Submission error:', error);
+                    showMessage('An error occurred. Please try again.', 'error');
+                } finally {
                     submitBtn.innerHTML = originalText;
                     submitBtn.disabled = false;
-                    
-                }, 2000);
+                }
             }
         });
     }
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
         console.log('Login form found');
-        loginForm.addEventListener('submit', function(e) {
+        loginForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             console.log('Login form submitted');
             
@@ -107,15 +107,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 submitBtn.textContent = 'Logging in...';
                 submitBtn.disabled = true;
 
-                // Simulate login process
-                setTimeout(() => {
+                try {
                     const email = document.getElementById('loginEmail').value;
                     const password = document.getElementById('loginPassword').value;
                     
-                    console.log('Login attempt:', { email, password });
+                    const response = await fetch('php/api/login.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ email, password })
+                    });
                     
-                    // Simple validation
-                    if (email && password) {
+                    const data = await response.json();
+                    
+                    if (data.success) {
                         showMessage('Login successful!', 'success');
                         
                         // Close modal after success
@@ -124,15 +130,20 @@ document.addEventListener('DOMContentLoaded', function() {
                             setTimeout(() => {
                                 loginModal.style.display = 'none';
                                 document.body.style.overflow = 'auto';
+                                // Update UI and reload page
+                                window.location.reload();
                             }, 1500);
                         }
                     } else {
-                        showMessage('Please fill in all fields.', 'error');
+                        showMessage(data.message || 'Login failed. Please try again.', 'error');
                     }
-                    
+                } catch (error) {
+                    console.error('Login error:', error);
+                    showMessage('An error occurred. Please try again.', 'error');
+                } finally {
                     submitBtn.textContent = originalText;
                     submitBtn.disabled = false;
-                }, 1500);
+                }
             }
         });
     }
@@ -141,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const registerForm = document.getElementById('registerForm');
     if (registerForm) {
         console.log('Register form found');
-        registerForm.addEventListener('submit', function(e) {
+        registerForm.addEventListener('submit', async function(e) {
             e.preventDefault();
             console.log('Register form submitted');
             
@@ -159,32 +170,45 @@ document.addEventListener('DOMContentLoaded', function() {
                 submitBtn.textContent = 'Creating Account...';
                 submitBtn.disabled = true;
 
-                // Simulate registration process
-                setTimeout(() => {
+                try {
                     const formData = new FormData(this);
-                    const data = {};
-                    for (let [key, value] of formData.entries()) {
-                        data[key] = value;
+                    const data = Object.fromEntries(formData.entries());
+                    
+                    const response = await fetch('php/api/register.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data)
+                    });
+                    
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        showMessage(result.message || 'Account created successfully!', 'success');
+                        
+                        // Switch to login modal after success
+                        const registerModal = document.getElementById('registerModal');
+                        const loginModal = document.getElementById('loginModal');
+                        if (registerModal && loginModal) {
+                            setTimeout(() => {
+                                registerModal.style.display = 'none';
+                                loginModal.style.display = 'flex';
+                                this.reset();
+                                // Update UI and reload page
+                                window.location.reload();
+                            }, 2000);
+                        }
+                    } else {
+                        showMessage(result.message || 'Registration failed. Please try again.', 'error');
                     }
-                    
-                    console.log('Registration data:', data);
-                    
-                    showMessage('Account created successfully! You can now login.', 'success');
-                    
-                    // Switch to login modal after success
-                    const registerModal = document.getElementById('registerModal');
-                    const loginModal = document.getElementById('loginModal');
-                    if (registerModal && loginModal) {
-                        setTimeout(() => {
-                            registerModal.style.display = 'none';
-                            loginModal.style.display = 'flex';
-                            this.reset();
-                        }, 2000);
-                    }
-                    
+                } catch (error) {
+                    console.error('Registration error:', error);
+                    showMessage('An error occurred. Please try again.', 'error');
+                } finally {
                     submitBtn.textContent = originalText;
                     submitBtn.disabled = false;
-                }, 2000);
+                }
             }
         });
     }
@@ -472,37 +496,5 @@ function initializeDynamicForm() {
                 }
             }
         });
-    } else {
-        console.error('Service type element not found');
     }
-}
-
-// Utility function to show messages
-function showMessage(message, type) {
-    console.log('Showing message:', message, type);
-    
-    // Remove existing messages
-    const existingMessages = document.querySelectorAll('.message');
-    existingMessages.forEach(msg => msg.remove());
-    
-    // Create new message element
-    const messageDiv = document.createElement('div');
-    messageDiv.className = `message ${type}`;
-    messageDiv.textContent = message;
-    
-    // Insert at the top of the body or form
-    const form = document.querySelector('form');
-    if (form) {
-        form.insertBefore(messageDiv, form.firstChild);
-    } else {
-        // Insert at top of body if no form found
-        document.body.insertBefore(messageDiv, document.body.firstChild);
-    }
-    
-    // Auto remove after 5 seconds
-    setTimeout(() => {
-        if (messageDiv.parentNode) {
-            messageDiv.remove();
-        }
-    }, 5000);
 }
